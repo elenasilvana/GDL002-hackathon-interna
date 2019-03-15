@@ -14,11 +14,51 @@ for (let i = 0; i < arrMovies.length; i++) {
 }
 
 function showMovie(arrAlternativeMovies) {
+
+    movieCard(arrAlternativeMovies);
+
+/*
     arrAlternativeMovies.forEach(element => {
         document.getElementById("movieRandomList").innerHTML += "<div id= 'list' class ='movies'>" + "<img src = '" + element.Poster + "' />" + " " + element.Year + " " + element.Title + "</div>";
 
     });
+*/
 }
+
+function showInfoCard(movie){ 
+    //create a template that will show the objet movie data
+    return `
+    <div class="movie-card">
+        <div class="preview-card">
+        <img src="${movie.Poster}">
+        <h3>${movie.Title.toUpperCase()}</h3>
+        //nombre de la pelicula
+    </div>
+    <div class="info-card">
+        //nombre y año
+        ${movie.Title} ${movie.Year}
+        //director
+        ${movie.Director}
+        //País
+        ${movie.Country}
+        //raking
+        //premio
+        ${movie.Awards}
+        //duración
+        ${movie.Runtime}
+    </div>
+
+    </div>
+`;
+}
+
+function movieCard (data){
+    document.getElementById("movieRandomList").innerHTML= `
+    <p> Éstos son algunos titulos que podrías revisar: (${data.length} resultados)</p>
+    ${data.map(showInfoCard).join("")}`
+}
+
+
 document.getElementById("movieRandomList").addEventListener("load", showMovie(arrAlternativeMovies))
 
 function home() {
